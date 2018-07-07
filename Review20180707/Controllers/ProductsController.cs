@@ -27,6 +27,15 @@ namespace Review20180707.Controllers
             return View(data);
         }
 
+        public ActionResult NewIndex()
+        {
+            var list = db.Product
+                        .OrderByDescending(c => c.ProductId)
+                        .Take(10);
+
+            return View(list);
+        }
+
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
