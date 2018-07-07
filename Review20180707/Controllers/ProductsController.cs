@@ -64,6 +64,33 @@ namespace Review20180707.Controllers
             return RedirectToAction("NewIndex");
         }
 
+        public ActionResult NewEdit(int id)
+        {
+            var one = db.Product.Find(id);
+
+            return View(one);
+        }
+
+        [HttpPost]
+        public ActionResult NewEdit(ProductViewModel data)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var one = db.Product.Find(data.ProductId);
+            one.ProductId = data.ProductId;
+            one.ProductName = data.ProductName;
+            one.Price = data.Price;
+            one.Stock = data.Stock;
+            
+            db.SaveChanges();
+
+            return RedirectToAction("NewIndex");
+        }
+
+
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
