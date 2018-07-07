@@ -36,6 +36,34 @@ namespace Review20180707.Controllers
             return View(list);
         }
 
+        public ActionResult AddNewProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddNewProduct(ProductViewModel data)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var newData = new Product()
+            {
+                ProductId = data.ProductId,
+                ProductName = data.ProductName,
+                Active = true,
+                Price = data.Price,
+                Stock = data.Stock
+            };
+
+            db.Product.Add(newData);
+            db.SaveChanges();
+
+            return RedirectToAction("NewIndex");
+        }
+
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
