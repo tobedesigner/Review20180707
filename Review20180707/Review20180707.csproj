@@ -258,6 +258,7 @@
     <Content Include="Views\Products\NewIndex.cshtml" />
     <Content Include="Views\Products\AddNewProduct.cshtml" />
     <Content Include="Views\Products\NewEdit.cshtml" />
+    <Content Include="Views\Products\NewDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -90,6 +90,14 @@ namespace Review20180707.Controllers
             return RedirectToAction("NewIndex");
         }
 
+        public ActionResult NewDelete(int id)
+        {
+            var data = db.Product.Find(id);
+            db.Product.Remove(data);
+            db.SaveChanges();
+
+            return RedirectToAction("NewIndex");
+        }
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
@@ -181,6 +189,12 @@ namespace Review20180707.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Product.Find(id);
+            List<OrderLine> orderlines = db.OrderLine.Where(c => c.ProductId == id).ToList();
+
+            foreach (var orderline in orderlines)
+            {
+                db.OrderLine.Remove(orderline);
+            }
             db.Product.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
