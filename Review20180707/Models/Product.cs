@@ -25,10 +25,12 @@ namespace Review20180707.Models
         [Required]
         public string ProductName { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
         public Nullable<decimal> Price { get; set; }
         [Required]
         public Nullable<bool> Active { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
         public Nullable<decimal> Stock { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
